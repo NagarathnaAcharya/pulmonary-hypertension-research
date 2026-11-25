@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7fb">
+    <meta name="description" content="Research dashboard for pulmonary hypertension phenotyping and model validation in critical-care cohorts.">
+    <title>PulmoScope — PH research dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#" aria-label="PulmoScope home" data-page="overview">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none"><path d="M20 6v11m0 0c-3.1-5.8-9-6.7-11-3.6-2.7 4.7.7 16 6.1 18.1 2.4.9 4.9-.4 4.9-3.8m0-10.7c3.1-5.8 9-6.7 11-3.6 2.7 4.7-.7 16-6.1 18.1-2.4.9-4.9-.4-4.9-3.8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="brand-name">pulmo<span>scope</span><small>RESEARCH WORKSPACE</small></span>
+        </a>
+
+        <div class="workspace-label">WORKSPACE</div>
+        <nav class="main-nav" aria-label="Main navigation">
+          <button class="nav-item active" data-page="overview">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>
+            <span>Overview</span>
+          </button>
+          <button class="nav-item" data-page="ph-model">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5m0 14h16M7 15l4-4 3 2 6-7"/><circle cx="7" cy="15" r="1"/><circle cx="11" cy="11" r="1"/><circle cx="14" cy="13" r="1"/><circle cx="20" cy="6" r="1"/></svg>
+            <span>PH model</span>
+          </button>
+          <button class="nav-item" data-page="mortality">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7.5-4.4-7.5-10.2A4.3 4.3 0 0 1 12 7.1a4.3 4.3 0 0 1 7.5 2.7C19.5 15.6 12 20 12 20Z"/><path d="M4.8 12h4l2-3.5 2.4 7 1.8-3.5h4.2"/></svg>
+            <span>Mortality analysis</span>
+          </button>
+          <button class="nav-item" data-page="external">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.8 12h16.4M12 3.5c2.2 2.3 3.2 5.1 3.2 8.5s-1 6.2-3.2 8.5C9.8 18.2 8.8 15.4 8.8 12s1-6.2 3.2-8.5Z"/></svg>
+            <span>External validation</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-divider"></div>
+       
+        
+
+        <div class="sidebar-bottom">
+          <div class="research-card">
+            <span class="research-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2L12 3Z"/><path d="m19 15 .9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z"/></svg></span>
+            <strong>Research use only</strong>
+            <p>These retrospective findings are not a diagnostic or treatment tool.</p>
+            <button type="button" class="text-button" data-page="ph-model">Study methods <span aria-hidden="true">→</span></button>
+          </div>
+          <div class="profile">
+            <span class="avatar">PH</span>
+            <span class="profile-copy"><strong>PH Research</strong><small>MIMIC-IV · v3.1</small></span>
+            <button class="icon-button profile-menu" type="button" aria-label="Workspace information" title="Research workspace">•••</button>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-area">
+        <header class="topbar">
+          <button class="icon-button menu-toggle" type="button" aria-label="Open navigation" id="menu-toggle">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+          <div class="breadcrumb"><span>Research</span><span class="crumb-slash">/</span><strong id="breadcrumb-current">Overview</strong></div>
+          <div class="topbar-actions">
+            <span class="data-status"><i></i> Research snapshot</span>
+            <button class="export-button" type="button" id="export-button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 15v4a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-4"/></svg>
+              <span>Export summary</span>
+            </button>
+          </div>
+        </header>
+
+        <div class="content">
+          <section class="page active" id="page-overview" aria-labelledby="page-title">
+            <div class="page-heading">
+              <div>
+                <div class="eyebrow"><span class="eyebrow-dot"></span> PULMONARY HYPERTENSION · MIMIC-IV 3.1</div>
+                <h1 id="page-title">Research overview</h1>
+                <p class="page-subtitle">A cohort-level view of ICU pulmonary artery pressure phenotyping and model evaluation.</p>
+              </div>
+              <span class="study-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.6 3 8.3 7 10 4-1.7 7-5.4 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg> Retrospective study</span>
+            </div>
+
+            <div class="stat-grid">
+              <article class="stat-card">
+                <div class="stat-top"><span class="stat-label">Cohort patients</span><span class="stat-icon blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 20v-1.5a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4V20m7-9a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm6-7.5a4 4 0 0 1 0 7.8m2 3.7a4 4 0 0 1 3 3.9V20"/></svg></span></div>
+                <div class="stat-value">7,815</div>
+                <div class="stat-foot"><span class="trend neutral">1 row / patient</span><span>at least 1 mPAP reading</span></div>
+              </article>
+              <article class="stat-card">
+                <div class="stat-top"><span class="stat-label">PH-positive by study definition</span><span class="stat-icon teal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18h16M6 15l4-4 3 2 5-7"/><path d="M15 6h3v3"/></svg></span></div>
+                <div class="stat-value">72.3<span class="stat-unit">%</span></div>
+                <div class="stat-foot"><span class="trend positive">Study classification</span><span>24-hour median mPAP &gt; 20 mmHg</span></div>
+              </article>
+              <article class="stat-card">
+                <div class="stat-top"><span class="stat-label">Model A · test AUROC</span><span class="stat-icon purple"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18.5V5.5m0 13h16M7 15l4-4 3 2 6-7"/></svg></span></div>
+                <div class="stat-value">0.749</div>
+                <div class="stat-foot"><span class="trend positive">95% CI 0.721–0.775</span><span>Logistic regression</span></div>
+              </article>
+              <article class="stat-card">
+                <div class="stat-top"><span class="stat-label">Model A · predictors</span><span class="stat-icon amber"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 12h16M4 19h16"/><circle cx="9" cy="5" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="7" cy="19" r="2"/></svg></span></div>
+                <div class="stat-value">55</div>
+                <div class="stat-foot"><span class="trend neutral">Clinical and Laboratory Predictors</span><span>Model B adds cardiac output</span></div>
+              </article>
+            </div>
+
+            <div class="section-row">
+              <div><h2>Study at a glance</h2><p>How the cohort and models were defined</p></div>
+              <button type="button" class="subtle-link" data-page="ph-model">View model results <span aria-hidden="true">→</span></button>
+            </div>
+            <div class="overview-grid">
+              <article class="card cohort-card">
+                <div class="card-heading"><div><h3>Cohort composition</h3><p>ICU patients with pulmonary artery catheter measurements</p></div><span class="pill pill-blue">MIMIC-IV</span></div>
+                <div class="cohort-visual">
+                  <div class="donut-wrap">
+                    <div class="donut" role="img" aria-label="72.3 percent classified as PH-positive by study definition based on a 24-hour median mPAP greater than 20 mmHg; 27.7 percent PH-negative"><div><strong>72.3%</strong><span>PH positive</span></div></div>
+                  </div>
+                  <div class="legend">
+                    <div class="legend-row"><span class="legend-swatch blue-swatch"></span><span>PH-positive</span><strong>5,650</strong></div>
+                    <div class="legend-row"><span class="legend-swatch gray-swatch"></span><span>PH-negative</span><strong>2,165</strong></div>
+                    <div class="legend-divider"></div>
+                    <div class="legend-note"><span class="mini-dot"></span><span>Study-defined PH classification: 24-hour median mPAP &gt; 20 mmHg; not clinical PAH diagnosis</span></div>
+                  </div>
+                </div>
+                <div class="card-footer">Index time: first valid mPAP reading <span>·</span> One row per patient</div>
+              </article>
+
+              <article class="card performance-card">
+                <div class="card-heading"><div><h3>Model comparison</h3><p>Test-set discrimination · PH classification</p></div><button class="more-button" type="button" data-page="ph-model" aria-label="View model details">•••</button></div>
+                <div class="model-bars">
+                  <div class="model-row"><div class="model-name"><span class="model-marker lr-marker"></span>Logistic regression</div><div class="bar-track"><div class="bar-fill lr-fill" style="width:74.9%"></div></div><strong>0.749</strong></div>
+                  <div class="model-row"><div class="model-name"><span class="model-marker xgb-marker"></span>XGBoost</div><div class="bar-track"><div class="bar-fill xgb-fill" style="width:73.8%"></div></div><strong>0.738</strong></div>
+                  <div class="axis-labels"><span>0.50</span><span>0.75</span><span>1.00</span></div>
+                </div>
+                <div class="performance-foot"><span><i class="tiny-check"></i> Similar performance with cardiac output</span><button type="button" class="subtle-link" data-page="ph-model">Details →</button></div>
+              </article>
+            </div>
+
+            <div class="bottom-grid">
+              <article class="card finding-card">
+                <div class="card-heading"><div><h3>Key research finding</h3><p>Model A vs. Model B</p></div><span class="finding-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.1 5.9L20 11l-5.9 2.1L12 19l-2.1-5.9L4 11l5.9-2.1L12 3Z"/></svg></span></div>
+                <div class="finding-number">+0.001 <span>AUROC</span></div>
+                <p class="finding-copy">Adding cardiac output resulted in a negligible improvement in logistic regression AUROC (0.749 to 0.750).</p>
+                <button type="button" class="subtle-link" data-page="ph-model">Explore performance <span aria-hidden="true">→</span></button>
+              </article>
+              <article class="card caveat-card">
+                <div class="caveat-symbol"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v4m0 4h.01M10.3 4.8 2.9 18a1.5 1.5 0 0 0 1.3 2.2h15.6a1.5 1.5 0 0 0 1.3-2.2L13.7 4.8a2 2 0 0 0-3.4 0Z"/></svg></div>
+                <div><h3>Interpret with care</h3><p>79% of the cohort started in a cardiac surgery ICU. The cohort reflects a single tertiary-care hospital and catheter-measured pressures in critically ill patients.</p></div>
+                <button type="button" class="icon-button caveat-arrow" data-page="ph-model" aria-label="Read study limitations">→</button>
+              </article>
+            </div>
+            <footer class="page-footer"><span>PulmoScope <span class="footer-dot">·</span> Research dashboard</span><span>Study snapshot <b>v1.0</b></span></footer>
+          </section>
+
+          <section class="page" id="page-ph-model" aria-labelledby="ph-title" hidden>
+            <div class="page-heading">
+              <div><div class="eyebrow"><span class="eyebrow-dot"></span> MODEL EVALUATION</div><h1 id="ph-title">Elevated mPAP Classification</h1><p class="page-subtitle">Held-out test-set performance using an 80/20 stratified train-test split.</p></div>
+              <span class="study-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.6 3 8.3 7 10 4-1.7 7-5.4 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg> 80 / 20 stratified split</span>
+            </div>
+            <div class="stat-grid three-stats">
+              <article class="stat-card"><div class="stat-top"><span class="stat-label">Test patients</span><span class="stat-icon blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 20v-1.5a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4V20m7-9a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/></svg></span></div><div class="stat-value">1,563</div><div class="stat-foot"><span>20% held-out test set</span><span>Seed 42</span></div></article>
+              <article class="stat-card"><div class="stat-top"><span class="stat-label">Best test AUROC</span><span class="stat-icon teal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18.5V5.5m0 13h16M7 15l4-4 3 2 6-7"/></svg></span></div><div class="stat-value">0.750</div><div class="stat-foot"><span class="trend positive">95% CI 0.721–0.776</span><span>Logistic regression · Model B</span></div></article>
+              <article class="stat-card"><div class="stat-top"><span class="stat-label">Elevated mPAP prevalence</span><span class="stat-icon purple"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18m0-18a7 7 0 0 1 0 14H5a7 7 0 0 1 0-14h7Z"/></svg></span></div><div class="stat-value">72.2<span class="stat-unit">%</span></div><div class="stat-foot"><span>Held-out test cohort</span></div></article>
+            </div>
+            <div class="section-row"><div><h2>Held-out performance</h2><p>Test-set comparison across four models</p></div><span class="pill pill-gray">MIMIC-IV · n = 1,563</span></div>
+            <article class="card table-card">
+              <div class="table-wrap"><table><thead><tr><th>Model</th><th>Features</th><th>CV AUROC</th><th>Test AUROC (95% CI)</th><th>AUPRC</th><th>Brier</th></tr></thead><tbody>
+                <tr><td><span class="table-model"><i class="model-marker lr-marker"></i>Logistic regression · Model A</span><span class="row-subtitle">Primary early-prediction analysis</span></td><td>55</td><td>0.743 ± 0.014</td><td><strong>0.749</strong> <span class="muted">(0.721–0.775)</span></td><td>0.878</td><td>0.170</td></tr>
+                <tr><td><span class="table-model"><i class="model-marker xgb-marker"></i>XGBoost · Model A</span><span class="row-subtitle">Primary early-prediction analysis</span></td><td>55</td><td>0.739 ± 0.009</td><td><strong>0.738</strong> <span class="muted">(0.713–0.763)</span></td><td>0.874</td><td>0.173</td></tr>
+                <tr><td><span class="table-model"><i class="model-marker lr-marker"></i>Logistic regression · Model B</span><span class="row-subtitle">Adds cardiac output · exploratory comparison</span></td><td>56</td><td>0.744 ± 0.014</td><td><strong>0.750</strong> <span class="muted">(0.721–0.776)</span></td><td>0.879</td><td>0.169</td></tr>
+                <tr><td><span class="table-model"><i class="model-marker xgb-marker"></i>XGBoost · Model B</span><span class="row-subtitle">Adds cardiac output · exploratory comparison</span></td><td>56</td><td>0.740 ± 0.008</td><td><strong>0.737</strong> <span class="muted">(0.711–0.764)</span></td><td>0.873</td><td>0.173</td></tr>
+              </tbody></table></div>
+              <div class="table-footnote">AUPRC baseline (random ranking) equals elevated mPAP prevalence in the held-out test cohort: 0.722. AUROC measures discrimination; it does not establish clinical utility.<br><strong>Model A</strong> represents the primary analysis using non-invasive predictors. <strong>Model B</strong> adds cardiac output as an additional exploratory comparison. The small AUROC difference does not demonstrate a meaningful performance improvement.</div>
+            </article>
+            <div class="section-row"><div><h2>Model diagnostics</h2><p>Calibration and decision-curve summaries from the study</p></div></div>
+            <div class="diagnostic-grid">
+              <article class="card diagnostic-card"><div class="card-heading"><div><h3>Calibration</h3><p>Agreement between predicted and observed probabilities</p></div><span class="pill pill-gray">Model A</span></div><img src="results/figures/new/figure2_calibration.png" alt="Calibration plot for the elevated mPAP model" loading="lazy"><p class="image-caption">Calibration curves for the held-out test set. See the report figure for axes and method details.</p></article>
+              <article class="card diagnostic-card"><div class="card-heading"><div><h3>Decision curve</h3><p>Net benefit across thresholds</p></div><span class="pill pill-gray">Model A</span></div><img src="results/figures/new/figure3_decision_curve.png" alt="Decision curve for the elevated mPAP model" loading="lazy"><p class="image-caption">Decision-curve analysis compares model strategies with treat-all and treat-none baselines.</p></article>
+            </div>
+            <div class="section-row"><div><h2>SHAP feature attribution</h2><p>Features influencing elevated mPAP model predictions</p></div><span class="pill pill-gray">Model A · XGBoost</span></div>
+            <article class="card shap-card"><img src="results/figures/new/shap_summary_modelA.png" alt="SHAP summary plot showing feature influence on elevated mPAP model predictions" loading="lazy"><p class="image-caption">SHAP values describe how features contributed to model output in this cohort; they are not causal effects.</p></article>
+            <div class="section-row"><div><h2>Study design</h2><p>How the elevated mPAP classification target was assembled</p></div></div>
+            <div class="overview-grid design-grid">
+              <article class="card design-card"><span class="step-number">01</span><div><h3>Identify cohort</h3><p>7,815 ICU patients with at least one valid pulmonary artery pressure mean reading (mPAP 5–100 mmHg).</p></div></article>
+              <article class="card design-card"><span class="step-number">02</span><div><h3>Define elevated mPAP label</h3><p>Median mPAP greater than 20 mmHg in the 24-hour window after index time. Index is the first valid reading.</p></div></article>
+              <article class="card design-card"><span class="step-number">03</span><div><h3>Build predictors</h3><p>Demographic, admission, and history features plus the last available laboratory results from the preceding 72 hours.</p></div></article>
+              <article class="card design-card"><span class="step-number">04</span><div><h3>Compare models</h3><p>Model A uses 55 features. Model B adds cardiac output (56 features), available in 84.2% of the cohort.</p></div></article>
+            </div>
+            <footer class="page-footer"><span>PulmoScope <span class="footer-dot">·</span> Research dashboard</span><span>Study snapshot <b>v1.0</b></span></footer>
+          </section>
+
+          <section class="page" id="page-mortality" aria-labelledby="mortality-title" hidden>
+            <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-dot"></span> SECONDARY ANALYSIS</div><h1 id="mortality-title">7-day Mortality Risk Analysis</h1><p class="page-subtitle">Exploratory prediction of mortality from the 24-hour landmark through day 7 after the first valid mPAP measurement.</p></div><span class="study-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.6 3 8.3 7 10 4-1.7 7-5.4 7-10V6l-7-3Z"/><path d="m9 12 2 2 4-4"/></svg> Exploratory</span></div>
+            <div class="stat-grid three-stats">
+              <article class="stat-card"><div class="stat-top"><span class="stat-label">Landmark patients</span><span class="stat-icon blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 20v-1.5a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4V20m7-9a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/></svg></span></div><div class="stat-value">7,664</div><div class="stat-foot"><span>10-fold cross-validation</span><span>MIMIC-IV</span></div></article>
+              <article class="stat-card"><div class="stat-top"><span class="stat-label">Observed deaths</span><span class="stat-icon amber"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M6 7h12M7 7c0 3 2 5 5 5s5-2 5-5M8 17h8"/></svg></span></div><div class="stat-value">253</div><div class="stat-foot"><span>3.3% of cohort</span><span>24 h to 7 d after index</span></div></article>
+              <article class="stat-card"><div class="stat-top"><span class="stat-label">XGBoost AUROC</span><span class="stat-icon purple"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18.5V5.5m0 13h16M7 15l4-4 3 2 6-7"/></svg></span></div><div class="stat-value">0.935</div><div class="stat-foot"><span class="trend positive">95% CI 0.922–0.948</span><span>AUPRC 0.386</span></div></article>
+            </div>
+            <div class="section-row"><div><h2>Subgroup and Sensitivity Analysis</h2><p>Stratified 10-fold cross-validation · XGBoost</p></div></div>
+            <article class="card table-card"><div class="table-wrap"><table><thead><tr><th>Analysis group</th><th>Patients</th><th>Deaths</th><th>Prevalence</th><th>AUROC (95% CI)</th><th>AUPRC</th></tr></thead><tbody>
+              <tr><td><span class="table-model">All landmark patients</span><span class="row-subtitle">Reference analysis</span></td><td>7,664</td><td>253</td><td>3.3%</td><td><strong>0.932</strong> <span class="muted">(0.920–0.948)</span></td><td>0.372</td></tr>
+              <tr><td><span class="table-model">Cardiac surgery ICU</span><span class="row-subtitle">69 deaths; interpret cautiously</span></td><td>6,111</td><td>69</td><td>1.1%</td><td><strong>0.918</strong> <span class="muted">(0.876–0.950)</span></td><td>0.243</td></tr>
+              <tr><td><span class="table-model">All other units</span></td><td>1,553</td><td>184</td><td>11.8%</td><td><strong>0.819</strong> <span class="muted">(0.790–0.852)</span></td><td>0.412</td></tr>
+              <tr><td><span class="table-model">Non-hemodynamic feature sensitivity analysis</span><span class="row-subtitle">Excludes mPAP and cardiac output</span></td><td>7,664</td><td>253</td><td>3.3%</td><td><strong>0.929</strong> <span class="muted">(0.918–0.945)</span></td><td>0.372</td></tr>
+            </tbody></table></div></article>
+            <div class="section-row"><div><h2>Model explanations</h2><p>SHAP attribution and exploratory stability analysis</p></div><span class="pill pill-blue">Mean rank correlation 0.906</span></div>
+            <div class="explanation-grid">
+              <article class="card feature-card">
+                <div class="card-heading"><div><h3>Most influential features</h3><p>Top five features ranked by mean absolute SHAP values in the mortality prediction model.</p></div><span class="pill pill-gray">Top 5</span></div>
+                <div class="feature-list">
+                  <div class="feature-item"><div class="feature-label"><span>Cardiac output</span><strong>Top 1</strong></div><div class="feature-track"><i style="width:100%"></i></div></div>
+                  <div class="feature-item"><div class="feature-label"><span>Mean pulmonary artery pressure</span><strong>Top 2</strong></div><div class="feature-track"><i style="width:93%"></i></div></div>
+                  <div class="feature-item"><div class="feature-label"><span>Urea nitrogen</span><strong>Top 3</strong></div><div class="feature-track"><i style="width:77%"></i></div></div>
+                  <div class="feature-item"><div class="feature-label"><span>Lactate</span><strong>Top 4</strong></div><div class="feature-track"><i style="width:70%"></i></div></div>
+                  <div class="feature-item"><div class="feature-label"><span>Creatinine</span><strong>Top 5</strong></div><div class="feature-track"><i style="width:70%"></i></div></div>
+                </div>
+                <p class="image-caption">Feature importance describes model attribution, not causal effects.</p>
+              </article>
+              <article class="card stability-card"><div class="card-heading"><div><h3>Exploratory explanation stability</h3><p>Limited bootstrap resampling</p></div><span class="pill pill-teal">30 resamples</span></div><div class="stability-score">0.906 <span>mean Spearman rank correlation</span></div><p>This exploratory analysis used 30 bootstrap resamples. Cardiac output ranked in the top 10 in all 30 and mPAP in 28; this resample count does not establish definitive stability.</p><div class="stability-callout"><span class="tiny-check"></span><span>Top-10 feature ranking consistency observed across 30 bootstrap resamples.</span></div></article>
+            </div>
+            <footer class="page-footer"><span>PulmoScope <span class="footer-dot">·</span> Research dashboard</span><span>Study snapshot <b>v1.0</b></span></footer>
+          </section>
+
+          <section class="page" id="page-external" aria-labelledby="external-title" hidden>
+            <div class="page-heading"><div><div class="eyebrow"><span class="eyebrow-dot"></span> TRANSPORTABILITY CHECK</div><h1 id="external-title">External validation</h1><p class="page-subtitle">A compact laboratory model tested in the eICU Collaborative Research Database.</p></div><span class="study-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.8 12h16.4M12 3.5c2.2 2.3 3.2 5.1 3.2 8.5s-1 6.2-3.2 8.5C9.8 18.2 8.8 15.4 8.8 12s1-6.2 3.2-8.5Z"/></svg> eICU-CRD 2.0</span></div>
+            <div class="stat-grid three-stats">
+              <article class="stat-card"><div class="stat-top"><span class="stat-label">External cohort</span><span class="stat-icon blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 20v-1.5a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4V20m7-9a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/></svg></span></div><div class="stat-value">10,267</div><div class="stat-foot"><span>Adult ICU stays</span><span>eICU-CRD 2.0</span></div></article>
+              <article class="stat-card"><div class="stat-top"><span class="stat-label">PH-positive</span><span class="stat-icon teal"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18h16M6 15l4-4 3 2 5-7"/></svg></span></div><div class="stat-value">66.5<span class="stat-unit">%</span></div><div class="stat-foot"><span>eICU cohort prevalence</span><span>mPAP &gt; 20 mmHg</span></div></article>
+              <article class="stat-card"><div class="stat-top"><span class="stat-label">5-feature AUROC</span><span class="stat-icon amber"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18.5V5.5m0 13h16M7 15l4-4 3 2 6-7"/></svg></span></div><div class="stat-value">0.590</div><div class="stat-foot"><span class="trend caution">95% CI 0.578–0.601</span><span>Compact logistic model</span></div></article>
+            </div>
+            <div class="section-row"><div><h2>Compact-model performance</h2><p>Frozen MIMIC model applied to the external cohort</p></div></div>
+            <article class="card table-card"><div class="table-wrap"><table><thead><tr><th>Model / cohort</th><th>Patients</th><th>AUROC (95% CI)</th><th>Brier</th><th>Calibration slope</th><th>Intercept</th></tr></thead><tbody>
+              <tr><td><span class="table-model">6 features · imputed</span></td><td>10,267</td><td><strong>0.588</strong> <span class="muted">(0.577–0.599)</span></td><td>0.227</td><td>0.41</td><td>0.23</td></tr>
+              <tr><td><span class="table-model">5 features · no lactate</span><span class="row-subtitle">Compact model</span></td><td>10,267</td><td><strong>0.590</strong> <span class="muted">(0.578–0.601)</span></td><td>0.230</td><td>0.47</td><td>0.08</td></tr>
+              <tr><td><span class="table-model">6 features · complete cases</span></td><td>1,019</td><td><strong>0.606</strong> <span class="muted">(0.565–0.646)</span></td><td>0.195</td><td>0.35</td><td>0.58</td></tr>
+            </tbody></table></div><div class="table-footnote">Five-feature inputs: RDW, PaO₂, bicarbonate, BUN, and platelets. The six-feature variant additionally uses lactate.</div></article>
+            <div class="external-insight-grid">
+              <article class="card external-insight"><span class="insight-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18.5V5.5m0 13h16M7 15l4-4 3 2 6-7"/></svg></span><div><h3>Modest discrimination</h3><p>AUROC near 0.59 indicates limited separation of PH-positive and PH-negative stays in this external dataset.</p></div></article>
+              <article class="card external-insight"><span class="insight-icon insight-amber"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18M6 7h12M7 7c0 3 2 5 5 5s5-2 5-5M8 17h8"/></svg></span><div><h3>Calibration needs work</h3><p>Calibration slopes of 0.35–0.47 and elevated Brier scores show predicted probabilities do not transfer reliably.</p></div></article>
+            </div>
+            <footer class="page-footer"><span>PulmoScope <span class="footer-dot">·</span> Research dashboard</span><span>Study snapshot <b>v1.0</b></span></footer>
+          </section>
+        </div>
+      </main>
+      <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>

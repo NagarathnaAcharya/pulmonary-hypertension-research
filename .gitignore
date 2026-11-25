@@ -1,0 +1,29 @@
+
+# Protected clinical datasets
+Compressed/
+*.csv
+*.csv.gz
+*.parquet
+*.joblib
+*.zip
+
+# Data folders
+data/
+dataset/
+datasets/
+
+# Model and temporary files
+.sf/
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Sensitive files
+.env
+notes.txt
+
+# Generated results (review before publishing)
+results/output/
+# Research figures - keep private until reviewed
+results/figures/
