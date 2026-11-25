@@ -19,6 +19,9 @@ __pycache__/
 venv/
 .venv/
 
+# Original exploratory research scripts and their local artifacts
+/scripts/
+
 # Sensitive files
 .env
 notes.txt
